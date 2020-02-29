@@ -7,8 +7,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AppTest {
+    App classUnderTest = new App();
     @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    }
+    @Test
+    public void testSame(){
+        assertEquals("Hello World",classUnderTest.getGreeting());
     }
 }
