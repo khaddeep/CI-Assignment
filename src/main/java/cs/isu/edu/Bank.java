@@ -1,28 +1,28 @@
 package cs.isu.edu;
 
+import java.util.HashMap;
+
 public class Bank {
-    double[] accNumbersArray={821521,825123,912321,124589};
-    double[] money={1000,5200.0,32055.21,1200};
-    
-    public void deposit(){
-        for (int i = 0; i <accNumbersArray.length ; i++) {
-            accNumbersArray[i]= money[i];
-        }
+    HashMap<String, Double> accountNumbers=new HashMap<>();
+
+    public void deposit(String accountHolderName, double amountToDeposit){
+        accountNumbers.put(accountHolderName,amountToDeposit);
     }
 
-    public double getBalance(double accountNumber){
-        double balance=0;
-        for (int i = 0; i <accNumbersArray.length ; i++) {
-            if (accountNumber ==accNumbersArray[i]) {
-                balance=money[i];
-            }
-        }
-        return balance;
+    public void withdraw(String accountHolderName, double amountToWithdraw){
+        double amountBeforeWithdrawl=accountNumbers.get(accountHolderName);
+        accountNumbers.put(accountHolderName,amountBeforeWithdrawl-amountToWithdraw);
+    }
+    public double getBalance(String accountHolderName){
+        return accountNumbers.get(accountHolderName);
     }
 
     public static void main(String[] args) {
         Bank bank=new Bank();
-        System.out.println(bank.getBalance(8215210));
+        bank.deposit("Deepson",2000);
+        bank.withdraw("Deepson",20);
+        bank.deposit("Deepson",300);
+        System.out.println(bank.getBalance("Deepson"));
     }
 
 }
